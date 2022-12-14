@@ -98,26 +98,10 @@ function generateHTML() {
         }
 
         function topHTMLContent() {
-            return (
-                `<div id="changelog">
-                <div class="content-container container">
-                <div class="row">
-                <div class="col-md-12">
-                <p style="text-align: center;">View changelog for
-                <a href="#highcharts">Highcharts</a>,
-                <a href="#highcharts-stock">Highcharts Stock</a>,
-                <a href="#highcharts-maps">Highcharts Maps</a>,
-                <a href="#highcharts-gantt">Highcharts Gantt</a>. Go to the
-                <a href="download">Download</a> page to get the latest version.</p>`
-            );
+            return '';
         }
         function productHeaderHTMLStructure(product) {
-            return (
-                `<div id="${product.changelogId}">
-                <div class="changelog-header">
-                <h2 id="${product.name}">${product.header}</h2>
-                </div>
-                <div class="changelog-container">`);
+            return '';
         }
         function makeDownloadLinks(version, name) {
             var filePrefixMap = {
@@ -144,7 +128,7 @@ function generateHTML() {
                         <a id="${id}"></a>
                         <span>${changelog.header.productName} v${version} ${changelog.header.date}</span>
                         <a class="release-header-hashtag" href="#${id}">#</a>
-                        <span class="download-link" ><a href="${downloadLink}" title="Download the zip archive for ${changelog.header.productName} v${version}"><i class="fas fa-download"></i></a></span>
+                        
                     </h3>
                     ${marked.parser(changelog.features)}`
                 );
@@ -203,21 +187,18 @@ function generateHTML() {
             return '';
         }
         function bottomHTMLContent() {
-            return (`</div>
-                    </div>
-                    </div>
-                    </div>`);
+            return '';
         }
         function endProductHTMLStructure() {
-            return ('</div> </div>');
+            return '';
         }
 
         function formatVersionNumber(versionNumber) {
             return versionNumber.split('.').join('-').slice(0, -3);
         }
 
-        function writeContentToNewHTMLFile() {
-            var outputFile = path.join(__dirname, (process.argv[2] || 'changelog') + '.html');
+        function writeContentToNewHTMLFile(product) {
+            var outputFile = path.join(__dirname, (process.argv[2] || product.name) + '.html');
             fs.writeFile(outputFile, pretty(htmlContent), function (err) {
                 if (err) {
                     reject(err);
@@ -247,6 +228,7 @@ function generateHTML() {
          * Goes synchronous through each markdown file in each directory and captures it's content
          */
         products.forEach(product => {
+            htmlContent = '';
             changelog.header.productName = product.header;
             changelog.header.name = product.name;
             changelog.header.offset = product.offset;
@@ -272,9 +254,10 @@ function generateHTML() {
                 htmlContent += upgradeAndBugContainer();
             });
             htmlContent += endProductHTMLStructure();
+            htmlContent += bottomHTMLContent();
+            writeContentToNewHTMLFile(product);
         });
-        htmlContent += bottomHTMLContent();
-        writeContentToNewHTMLFile();
+
     });
 }
 

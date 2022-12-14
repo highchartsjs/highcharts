@@ -24,7 +24,6 @@ require('./scripts-js');
 Gulp.task(
     'dist',
     Gulp.series(
-        'lint-ts',
         'scripts-clean',
         'scripts-css',
         'scripts-ts',
@@ -33,8 +32,6 @@ Gulp.task(
         'scripts-compile',
         'dist-clean',
         'dist-copy',
-        'dist-examples',
-        'dist-productsjs',
         'jsdoc-dts',
         'lint-dts',
         'dist-compress'
