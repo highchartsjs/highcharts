@@ -27,7 +27,6 @@ import Tick from '../Core/Axis/Tick.js';
 import Tooltip from '../Core/Tooltip.js';
 import Point from '../Core/Series/Point.js';
 import Pointer from '../Core/Pointer.js';
-import MSPointer from '../Core/MSPointer.js';
 import Legend from '../Core/Legend/Legend.js';
 import Chart from '../Core/Chart/Chart.js';
 import '../Extensions/ScrollablePlotArea.js';
@@ -67,7 +66,7 @@ G.Fx = Fx;
 G.Legend = Legend;
 G.PlotLineOrBand = PlotLineOrBand;
 G.Point = Point;
-G.Pointer = (MSPointer.isRequired() ? MSPointer : Pointer);
+G.Pointer = Pointer;
 G.Series = Series;
 G.StackItem = StackItem;
 G.SVGElement = SVGElement;
@@ -81,6 +80,8 @@ G.color = Color.parse;
 // Compositions
 HTMLRenderer.compose(SVGRenderer);
 HTMLElement.compose(SVGElement);
+Pointer.compose(Chart);
+Legend.compose(Chart);
 // DefaultOptions
 G.defaultOptions = Defaults.defaultOptions;
 G.getOptions = Defaults.getOptions;

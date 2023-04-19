@@ -466,6 +466,9 @@ const ChartDefaults: ChartOptions = {
          * Decides in what dimensions the user can pan the chart. Can be
          * one of `x`, `y`, or `xy`.
          *
+         * When this option is set to `y` or `xy`, [yAxis.startOnTick](#yAxis.startOnTick)
+         * and [yAxis.endOnTick](#yAxis.endOnTick) are overwritten to `false`.
+         *
          * @sample {highcharts} highcharts/chart/panning-type
          *         Zooming and xy panning
          *
@@ -504,6 +507,13 @@ const ChartDefaults: ChartOptions = {
      * are required to style the chart. The default style sheet is
      * available from `https://code.highcharts.com/css/highcharts.css`.
      *
+     * [Read more in the docs](https://www.highcharts.com/docs/chart-design-and-style/style-by-css)
+     * on what classes and variables are available.
+     *
+     * @sample highcharts/css/colors
+     *         Color theming with CSS
+     * @sample highcharts/css/prefers-color-scheme
+     *         Dynamic theme based on system settings
      * @type       {boolean}
      * @default    false
      * @since      7.0
@@ -965,6 +975,7 @@ const ChartDefaults: ChartOptions = {
      * @since      2.1.0
      * @apioption  chart.type
      */
+    type: 'line',
 
     /**
      * Decides in what dimensions the user can zoom by dragging the mouse.
