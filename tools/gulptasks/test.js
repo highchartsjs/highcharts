@@ -72,7 +72,8 @@ function checkJSWrap() {
 }
 
 /**
- * Check
+ * Checks
+ *
  * @return {void}
  */
 function checkDemosConsistency() {
@@ -176,9 +177,9 @@ function checkDemosConsistency() {
 }
 
 /**
- * check
+ * Checks
  * @async
- * @return {void}
+ * @return {Promise<void>}
  */
 function checkDocsConsistency() {
     const FS = require('fs');
@@ -250,7 +251,7 @@ function checkDocsConsistency() {
 }
 
 /**
- * save Run
+ * Save states
  * @return {void}
  */
 function saveRun() {
@@ -279,9 +280,10 @@ function saveRun() {
 }
 
 /**
- * Should Run
+ * Check states
+ *
  * @return {boolean}
- *         True if outdated
+ * True if outdated
  */
 function shouldRun() {
 

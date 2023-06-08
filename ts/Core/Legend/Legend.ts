@@ -36,7 +36,7 @@ const {
     animObject,
     setAnimation
 } = A;
-import F from '../FormatUtilities.js';
+import F from '../Templating.js';
 const { format } = F;
 import H from '../Globals.js';
 const {
@@ -368,27 +368,17 @@ class Legend {
         }
 
         if (!this.chart.styledMode) {
-            const legend = this,
-                options = legend.options,
-                hiddenColor = (legend.itemHiddenStyle as any).color,
-                textColor = visible ?
-                    options.itemStyle.color :
-                    hiddenColor,
+            const { itemHiddenStyle } = this,
+                hiddenColor = (itemHiddenStyle as any).color,
                 symbolColor = visible ?
                     (item.color || hiddenColor) :
                     hiddenColor,
                 markerOptions = item.options && (item.options as any).marker;
             let symbolAttr: SVGAttributes = { fill: symbolColor };
 
-            if (label) {
-                label.css({
-                    fill: textColor
-                });
-            }
+            label?.css(merge(visible ? this.itemStyle : itemHiddenStyle));
 
-            if (line) {
-                line.attr({ stroke: symbolColor });
-            }
+            line?.attr({ stroke: symbolColor });
 
             if (symbol) {
 

@@ -41,7 +41,7 @@ import A from '../Animation/AnimationUtilities.js';
 const { animObject } = A;
 import D from '../Defaults.js';
 const { defaultOptions } = D;
-import F from '../FormatUtilities.js';
+import F from '../Templating.js';
 const { format } = F;
 import U from '../Utilities.js';
 const {
@@ -127,7 +127,7 @@ class Point {
 
     public colorIndex?: number;
 
-    public dataLabels?: Array<SVGLabel>;
+    public dataLabels?: Array<SVGElement|SVGLabel>;
 
     public destroyed = false;
 
@@ -524,7 +524,7 @@ class Point {
             defaultFunction = function (event: MouseEvent): void {
                 // Control key is for Windows, meta (= Cmd key) for Mac, Shift
                 // for Opera.
-                if (point.select) { // #2911
+                if (!point.destroyed && point.select) { // #2911, #19075
                     point.select(
                         null as any,
                         event.ctrlKey || event.metaKey || event.shiftKey
