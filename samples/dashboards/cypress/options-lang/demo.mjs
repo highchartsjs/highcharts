@@ -19,7 +19,6 @@ const norwegianEditMode = {
     chartOptions: 'Graf alternativer',
     chartType: 'Graf type',
     pointFormat: 'Punkt format',
-    scaleElements: 'Skaler elementer',
     confirmDestroyRow: 'Vil du ødelegge raden?',
     confirmDestroyCell: 'Vil du ødelegge cellen?',
     confirmButton: 'Bekreft',
@@ -61,6 +60,14 @@ Dashboards.board('container', {
         cell: 'dashboard-col-0',
         type: 'Highcharts',
         chartOptions: {
+            chart: {
+                animation: false
+            },
+            plotOptions: {
+                series: {
+                    animation: false
+                }
+            },
             series: [{
                 data: [1, 2, 3]
             }]
@@ -69,6 +76,14 @@ Dashboards.board('container', {
         cell: 'dashboard-col-1',
         type: 'Highcharts',
         chartOptions: {
+            chart: {
+                animation: false
+            },
+            plotOptions: {
+                series: {
+                    animation: false
+                }
+            },
             series: [{
                 data: [1, 2, 3]
             }]

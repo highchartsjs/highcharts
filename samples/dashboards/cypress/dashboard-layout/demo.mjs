@@ -19,6 +19,11 @@ const chartDemo = {
             type: 'pie',
             animation: false,
             height: 150
+        },
+        plotOptions: {
+            series: {
+                animation: false
+            }
         }
     }
 };
@@ -28,7 +33,8 @@ Dashboards.board('container', {
         enabled: true,
         contextMenu: {
             enabled: true,
-            icon: 'https://code.highcharts.com/gfx/dashboards-icons/menu.svg',
+            icon: 'https://code.highcharts.com/dashboards/gfx/' +
+                'dashboards-icons/menu.svg',
             items: ['editMode', {
                 id: 'export-dashboard',
                 text: 'Export dashboard',
@@ -100,6 +106,11 @@ Dashboards.board('container', {
             },
             tooltip: {
                 enabled: false
+            },
+            plotOptions: {
+                series: {
+                    animation: false
+                }
             },
             series: [{
                 name: 'Series from options',
